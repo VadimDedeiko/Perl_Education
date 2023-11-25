@@ -17,7 +17,7 @@ sub new {
 
     bless $self, $class;
     return $self;
-}
+};
 
 sub breed {
     my $self = shift;
