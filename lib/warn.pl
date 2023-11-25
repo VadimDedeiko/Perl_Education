@@ -5,11 +5,8 @@ use feature qw/signatures state/;
 
 use Data::Dumper;
 
-my $test = 'world';
+warn "some warning";
 
-eval {
-die 'cannot go on'; # throw exception
-$test = 'bob';
-};
+my $test = 'world';
 
 print "hello $test: $@\n" # $@ call exeption message
