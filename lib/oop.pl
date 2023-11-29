@@ -4,8 +4,8 @@ use warnings FATAL => 'signal';
 use feature qw/signatures state say/; #say prints from new line console
 use Data::Dumper;
 BEGIN {
-     push @INC, '/home/dedeiko/IdeaProjects/Perl_Education/classes';
- }; # it might install using BEGIN command or perl -I ./oop.pl
+    push @INC, '/home/dedeiko/IdeaProjects/Perl_Education/classes';
+}; # it might install using BEGIN command or perl -I ./oop.pl
 
 use Data::Dumper;
 use Dog;
@@ -13,7 +13,8 @@ use Dog;
 
 my $Dog = Dog->new('Labrador', 50, 70, 'white', 'Fiddo');
 say $Dog->breed;
-
+$Dog->set_height(120);
+say $Dog->height;
 
 1;
 
