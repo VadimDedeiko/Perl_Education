@@ -16,7 +16,8 @@ my $dbh = DBI->connect($dsn, $user, $password) or die "Can't connect to database
 
 
 add_to_database('Alex');
-update_database('newName1', 4);
+add_to_database('Nick');
+update_database('newName1', 2);
 read_from_database();
 delete_from_database();
 
