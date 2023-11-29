@@ -15,14 +15,16 @@ my $dsn = "DBI:mysql:database=$db;host=$host;port=$port";
 my $dbh = DBI->connect($dsn, $user, $password) or die "Can't connect to database: $DBI::errstr\n";
 
 
-add_to_database('Vadim');
+add_to_database('Alex');
+update_database('newName1', 4);
 read_from_database();
+delete_from_database();
 
 
 sub add_to_database {
     my $data = shift;
     print "Connected to database.\n";
-    my $ins = $dbh->prepare('insert into users (name) values (?)');
+    my $ins = $dbh->prepare('insert into users (name) values ?');
 
     unless (defined $ins) {
         die "Error preparing SQL\n";
@@ -37,6 +39,26 @@ sub add_to_database {
     $dbh->disconnect();
 
     print "Completed insert.\n";
+}
+
+sub update_database {
+    my ($name, $id) = @_;
+    print "Connected to database.\n";
+    my $ins = $dbh->prepare('update users set name = ? where id = ?');
+
+    unless (defined $ins) {
+        die "Error preparing SQL\n";
+    }
+
+    unless ($ins->execute($name, $id)) {
+        die "Error executing SQL\n";
+    }
+
+    $ins->finish();
+
+    $dbh->disconnect();
+
+    print "Completed update.\n";
 }
 
 sub read_from_database {
@@ -60,17 +82,14 @@ sub read_from_database {
 }
 
 sub delete_from_database {
-    my $data = shift;
 
     print "Connected to database.\n";
 
     $dbh->do('delete from users') or die "Can't clean users table.\n";
 
-    $sth->finish();
-
     $dbh->disconnect();
 
-    print "Completed.\n";
+    print "Completed delete.\n";
 }
 
 1;
