@@ -31,6 +31,8 @@ my $dateTimePattern = DateTime::Format::Strptime->new(
     locale  => 'uk_UA'
 );
 
+main($after2000_file, $before2000_file);
+
 sub main {
     my ($after_file, $before_file) = @_;
     open(OUTPUT_1, '>', $after_file) or die "Can't open output for $after_file\n";
@@ -54,7 +56,5 @@ sub main {
     close OUTPUT_2;
     say "SUCCESSFULLY!"
 }
-
-main($after2000_file, $before2000_file);
 
 1;
